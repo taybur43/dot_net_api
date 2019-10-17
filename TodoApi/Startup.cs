@@ -21,11 +21,11 @@ namespace TodoApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
+            services.AddDbContext<TodoContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info() { Title = "My API", Version = "v1" });
             });
         }
 
